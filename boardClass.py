@@ -3,6 +3,7 @@ class Board(object):
 	
 	def __init__(self, rows, columns):
 		self.grid = []
+		self.cars = []
 		for row in range(rows):
 			# Add an empty array that will hold each cell
 			# in this row
@@ -11,7 +12,6 @@ class Board(object):
 				self.grid[row].append(0)  # Append a cell
 
 	def addCar(self, car):
-		cars = []
 		self.grid[car.y][car.x] = car.id
 		if car.orientation == 'H':
 			self.grid[car.y][car.x + 1] = car.id
@@ -21,7 +21,7 @@ class Board(object):
 			self.grid[car.y + 1][car.x] = car.id
 			if car.length == 3:
 				self.grid[car.y + 2][car.x] = car.id
-		cars.append(car)
+		self.cars.append(car)
 
 
 	def moveCarUp(self, car):
@@ -60,28 +60,41 @@ class Board(object):
 
 	def possibleMoves(self):
 		moves = []
-		cars[car]
-		for car in cars:
+		for car in self.cars:
 			if car.orientation == 'H':
 				if car.length == 2:
-					if board.grid[car.y][car.x - 1] == 0:
-						moves.append(car,'LEFT')
-					if board.grid[car.y][car.x + 2] == 0:
-						moves.append(car,'RIGHT')
+					if car.x + car.length < self.rows | car.x - car.length >= 0:
+						if self.grid[car.y][car.x - 1] == 0:
+							moves.append((car, 'LEFT'))
+						if self.grid[car.y][car.x + 2] == 0:
+							moves.append((car, 'RIGHT'))
+					else:
+						return false	
 				else:
-					if board.grid[car.y][car.x - 1] == 0:
-						moves.append(car,'LEFT')
-					if board.grid[car.y][car.x + 3] == 0:
-						moves.append(car,'RIGHT')
+					if car.x + car.length < self.rows | car.x - car.length >= 0:
+						if self.grid[car.y][car.x - 1] == 0:
+							moves.append((car, 'LEFT'))
+						if self.grid[car.y][car.x + 3] == 0:
+							moves.append((car, 'RIGHT'))
+					else:
+						return false		
 			else:
 				if car.length == 2:
-					if board.grid[car.y - 1][car.x] == 0:
-						moves.append(car,'UP')
-					if board.grid[car.y + 2][car.x] == 0:
-						moves.append(car,'DOWN')
+					if car.y + car.length < self.columns | car.y - car.length >= 0:
+						if self.grid[car.y - 1][car.x] == 0:
+							moves.append((car, 'UP'))
+						if self.grid[car.y + 2][car.x] == 0:
+							moves.append((car, 'DOWN'))
+					else:
+						return false		
 				else:
-					if board.grid[car.y - 1][car.x] == 0:
-						moves.append(car,'UP')
-					if board.grid[car.y + 3][car.x] == 0:
-						moves.append(car,'DOWN')
-		print(moves)
+					if car.y + car.length < self.columns | car.y - car.length >= 0:
+						if self.grid[car.y - 1][car.x] == 0:
+							moves.append((car, 'UP'))
+						if self.grid[car.y + 3][car.x] == 0:
+							moves.append((car, 'DOWN'))
+					else:
+						return false			
+		for elem in moves:
+			print(elem)
+		return moves
