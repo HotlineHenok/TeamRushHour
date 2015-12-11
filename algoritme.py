@@ -1,5 +1,6 @@
 import boardClass
 import carClass
+import random
 
 board = boardClass.Board(6, 6)
 redCar = carClass.Car('A', 3, 2, 2, 'H')
@@ -22,33 +23,11 @@ board.addCar(BlueCar)
 board.addCar(Purplebus)
 board.addCar(Yellowbus)
 
-board.printBoard()
-print (' ')
+print(board.cars)
 
-while board.grid[2][4] != 'A':
-	for car in cars:
-		if car.orientation == 'H':
-			if car.length == 2:	
-				if board.grid[car.y][car.x - 1] == 0:
-					board.moveCarLeft(car)
-				if board.grid[car.y][car.x + 2] == 0:
-					board.moveCarRight(car)
-			else:
-				if board.grid[car.y][car.x - 1] == 0:
-					board.moveCarLeft(car)
-				if board.grid[car.y][car.x + 3] == 0:
-					board.moveCarRight(car)
-		else:
-			if car.length == 2:
-				if board.grid[car.y - 1][car.x] == 0:
-					board.moveCarUp(car)
-				if board.grid[car.y + 2][car.x] == 0:
-					board.moveCarDown(car)
-			else:
-				if board.grid[car.y - 1][car.x] == 0:
-					board.moveCarUp(car)
-				if board.grid[car.y + 3][car.x] == 0:
-					board.moveCarDown(car)
-	board.printBoard()
-	print(' ')			
+print(' ')
+board.printBoard()
+
+
+
 						
