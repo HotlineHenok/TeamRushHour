@@ -13,6 +13,15 @@ board.addCar(LightBlueCar)
 
 board.printBoard()
 
-moves = board.possibleMoves()
-
 while board.grid[4][2] != 'A':
+	moves = board.possibleMoves()
+	for car in moves:
+		for LEFT in (moves):
+			board.moveCarLeft(car)
+		for RIGHT in random.choice(moves):
+			board.moveCarRight(car)
+		for UP in random.choice(moves):
+			board.moveCarUp(car)
+		for DOWN in random.choice(moves):
+			board.moveCarDown(car)
+		board.printBoard()

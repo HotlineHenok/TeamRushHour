@@ -28,6 +28,7 @@ print(board.cars)
 print(' ')
 board.printBoard()
 
-
+moves = board.possibleMoves()
+print(moves)
 
 						

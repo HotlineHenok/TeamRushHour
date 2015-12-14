@@ -87,7 +87,7 @@ class Board(object):
 				if car.length == 2:	
 					if car.y > 0: 	
 						if self.grid[car.y - 1][car.x] == 0:
-							moves.append((car, 'UP'))
+							moves.append[(car, 'UP')]
 					if car.y <= 3:	
 						if self.grid[car.y + 3][car.x] == 0:
 							moves.append((car, 'DOWN'))
