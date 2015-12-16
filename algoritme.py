@@ -23,12 +23,26 @@ board.addCar(BlueCar)
 board.addCar(Purplebus)
 board.addCar(Yellowbus)
 
-print(board.cars)
+oldMoves = board.possibleMoves()
+while board.grid[4][2] != 'A':
+	for elem in oldMoves:
+		if elem[1] == 'LEFT':
+			board.moveCarLeft(elem[0])
+			if checkFinish(boardNow, redCar) == True:
+					break
+		elif elem[1] == 'RIGHT':
+			board.moveCarRight(elem[0])
+			if checkFinish(boardNow, redCar) == True:
+					break
+		elif elem[1] == 'UP':
+			board.moveCarUp(elem[0])
+			if checkFinish(boardNow, redCar) == True:
+					break
+		elif elem[1] == 'DOWN':
+			board.moveCarDown(elem[0])
+			if checkFinish(boardNow, redCar) == True:
+					break
+	newMoves = board.possibleMoves()
+	oldMoves = newMoves
 
-print(' ')
-board.printBoard()
 
-moves = board.possibleMoves()
-print(moves)
-
-						

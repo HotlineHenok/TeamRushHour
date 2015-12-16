@@ -15,20 +15,16 @@ class Board(object):
 
 	def addCar(self, car):
 		self.grid[car.y][car.x] = car.id
+		self.cars.append(car)
 		if car.orientation == 'H':
-			if car.length == 2:
-				self.grid[car.y][car.x + 1] = car.id
-				self.cars.append(car)
-			else:
+			self.grid[car.y][car.x + 1] = car.id
+			if car.length == 3:
 				self.grid[car.y][car.x + 2] = car.id
-				self.cars.append(car)
-		if car.orientation == 'V':
-			if car.length == 2:
-				self.grid[car.y + 1][car.x] = car.id
-				self.cars.append(car)
+		elif car.orientation == 'V':
+			self.grid[car.y + 1][car.x] = car.id
 			if car.length == 3:
 				self.grid[car.y + 2][car.x] = car.id
-				self.cars.append(car)
+				
 
 
 	def moveCarUp(self, car):
@@ -64,6 +60,7 @@ class Board(object):
 	def printBoard(self):
 		for elem in self.grid:
 			print(elem)
+		print(' ')
 
 	def possibleMoves(self):
 		moves = []
@@ -87,8 +84,8 @@ class Board(object):
 				if car.length == 2:	
 					if car.y > 0: 	
 						if self.grid[car.y - 1][car.x] == 0:
-							moves.append[(car, 'UP')]
-					if car.y <= 3:	
+							moves.append((car, 'UP'))
+					if car.y < 3:	
 						if self.grid[car.y + 3][car.x] == 0:
 							moves.append((car, 'DOWN'))
 				else:
@@ -100,3 +97,8 @@ class Board(object):
 							moves.append((car, 'DOWN'))
 		return moves
 
+	def checkFinish(self, board, car):
+		if board.grid[4][2] == car.id:
+			return True
+		else:
+			return False
